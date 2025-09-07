@@ -1,0 +1,346 @@
+/* --- 1. CONFIGURAÇÕES GLOBAIS E FONTES --- */
+
+/* Importa as fontes 'Cinzel' (para títulos) e 'Poppins' (para textos) do Google Fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+/* Define variáveis CSS globais (custom properties) para todo o documento. */
+/* Isso facilita a manutenção e a troca de temas, pois as cores estão centralizadas aqui. */
+:root {
+    --cor-fundo-escuro: #120f1a;
+    /* Cor mais escura para o fundo principal */
+    --cor-fundo-claro: #1d1a39;
+    /* Cor mais clara para o centro do gradiente de fundo */
+    --cor-vidro: rgba(29, 26, 57, 0.6);
+    /* Cor semitransparente para o efeito de vidro */
+    --cor-borda-vidro: rgba(255, 255, 255, 0.1);
+    /* Borda sutil para os elementos de vidro */
+    --cor-primaria: #9f5afd;
+    /* Roxo vibrante, usado como cor de destaque principal */
+    --cor-secundaria: #ffc700;
+    /* Dourado, usado para preços e títulos importantes */
+    --cor-texto-principal: #f0f0f0;
+    /* Cor de texto padrão (quase branco) */
+    --cor-texto-secundario: #a9a2c2;
+    /* Cor de texto mais suave para informações secundárias */
+    --sombra-brilho: 0 0 25px rgba(159, 90, 253, 0.5);
+    /* Sombra roxa para criar um efeito de "brilho" */
+}
+
+/* Seletor universal: remove margens e paddings padrão de todos os elementos. */
+/* 'box-sizing: border-box' garante que padding e borda não aumentem a largura final do elemento. */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- 2. LAYOUT PRINCIPAL E FUNDO HARMÔNICO --- */
+
+/* Estiliza o corpo da página. */
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Define a fonte padrão para todo o texto. */
+    color: var(--cor-texto-principal);
+    /* Define a cor de texto padrão. */
+    background-color: var(--cor-fundo-escuro);
+    /* Cor de fundo de fallback, caso a imagem não carregue. */
+
+    /* Cria um gradiente circular que começa mais claro no centro e escurece para as bordas. */
+    background-image: radial-gradient(circle at center, var(--cor-fundo-claro) 0%, var(--cor-fundo-escuro) 70%);
+
+    /* Usa Flexbox para centralizar todo o conteúdo da página. */
+    display: flex;
+    /* Ativa o layout flexível. */
+    flex-direction: column;
+    /* Organiza os itens em uma coluna (header, main, footer). */
+    align-items: center;
+    /* Centraliza todos os itens horizontalmente. */
+    min-height: 100vh;
+    /* Garante que o body ocupe no mínimo 100% da altura da tela, mantendo o rodapé no final. */
+}
+
+/* --- 3. COMPONENTES PRINCIPAIS (CABEÇALHO, CONTEÚDO, RODAPÉ) --- */
+
+/* Estiliza o cabeçalho e o rodapé com regras em comum. */
+.cabecalho,
+.rodape {
+    width: 100%;
+    /* Faz com que ocupem toda a largura da tela. */
+    background-color: rgba(18, 15, 26, 0.8);
+    /* Fundo escuro semitransparente. */
+    backdrop-filter: blur(5px);
+    /* Aplica um desfoque no conteúdo que está atrás, criando o efeito de vidro. */
+    text-align: center;
+    /* Centraliza o conteúdo interno. */
+    padding: 20px 0;
+    /* Espaçamento interno vertical. */
+}
+
+/* Adiciona uma borda na parte inferior do cabeçalho para separá-lo do conteúdo. */
+.cabecalho {
+    border-bottom: 1px solid var(--cor-borda-vidro);
+}
+
+/* Adiciona uma borda no topo do rodapé e define a cor do texto. */
+.rodape {
+    border-top: 1px solid var(--cor-borda-vidro);
+    color: var(--cor-texto-secundario);
+}
+
+/* Estiliza a imagem do logo no cabeçalho. */
+.cabecalho img {
+    height: 60px;
+    /* Define uma altura fixa para o logo. */
+    filter: drop-shadow(0 0 10px var(--cor-primaria));
+    /* Adiciona uma sombra colorida para criar um efeito de brilho. */
+}
+
+/* Define a área principal do conteúdo. */
+.container {
+    width: 100%;
+    /* Ocupa a largura total disponível. */
+    max-width: 1400px;
+    /* Limita a largura máxima em telas grandes para melhor legibilidade. */
+    padding: 40px 20px;
+    /* Espaçamento interno para não colar nas bordas. */
+    flex-grow: 1;
+    /* Faz este container crescer e ocupar o espaço disponível, empurrando o rodapé para o final da página. */
+}
+
+/* --- 4. ESTILOS DE TEXTO E FILTROS --- */
+
+/* Estiliza o título principal "Produtos". */
+.produtos {
+    font-family: 'Cinzel', serif;
+    /* Usa a fonte especial para títulos. */
+    font-size: 3rem;
+    /* Tamanho grande para destaque. */
+    text-align: center;
+    /* Centraliza o texto. */
+    margin-bottom: 40px;
+    /* Espaçamento abaixo do título. */
+    color: var(--cor-secundaria);
+    /* Cor dourada. */
+    text-shadow: 0 0 15px var(--cor-secundaria);
+    /* Sombra dourada para efeito de brilho. */
+}
+
+/* Estiliza a seção de filtros. */
+.filtros {
+    display: flex;
+    /* Usa Flexbox para alinhar os itens de filtro. */
+    justify-content: center;
+    /* Centraliza os filtros horizontalmente. */
+    align-items: flex-end;
+    /* Alinha os itens pela base, útil para o botão. */
+    flex-wrap: wrap;
+    /* Permite que os itens quebrem para a linha de baixo em telas menores. */
+    gap: 25px;
+    /* Espaçamento entre os itens de filtro. */
+    margin-bottom: 50px;
+    /* Espaçamento abaixo da seção de filtros. */
+    padding: 25px;
+    /* Espaçamento interno. */
+    background: var(--cor-vidro);
+    /* Fundo de vidro semitransparente. */
+    border-radius: 15px;
+    /* Bordas arredondadas. */
+    border: 1px solid var(--cor-borda-vidro);
+    /* Borda sutil. */
+    backdrop-filter: blur(10px);
+    /* Desfoque mais intenso para o painel de filtros. */
+}
+
+/* Estiliza os contêineres dos labels e inputs. */
+.categoria-cartas,
+.preco-cartas {
+    display: flex;
+    /* Ativa Flexbox. */
+    flex-direction: column;
+    /* Organiza label e input um sobre o outro. */
+    gap: 8px;
+    /* Espaçamento entre label e input. */
+    color: var(--cor-texto-secundario);
+    /* Cor de texto mais suave para os labels. */
+}
+
+/* Estiliza os campos de seleção e de input dentro dos filtros. */
+.filtros select,
+.filtros input {
+    background-color: var(--cor-fundo-escuro);
+    /* Fundo escuro. */
+    border: 1px solid var(--cor-primaria);
+    /* Borda roxa. */
+    color: var(--cor-texto-principal);
+    /* Texto branco. */
+    padding: 10px 15px;
+    /* Espaçamento interno. */
+    border-radius: 8px;
+    /* Bordas arredondadas. */
+    font-size: 1rem;
+    /* Tamanho da fonte. */
+    width: 220px;
+    /* Largura fixa. */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Animação suave para o foco. */
+}
+
+/* Estilo que se aplica quando o usuário clica/foca no campo de seleção ou input. */
+.filtros select:focus,
+.filtros input:focus {
+    outline: none;
+    /* Remove a borda de foco padrão do navegador. */
+    border-color: var(--cor-secundaria);
+    /* Muda a cor da borda para dourado. */
+    box-shadow: 0 0 10px var(--cor-secundaria);
+    /* Adiciona um brilho dourado. */
+}
+
+/* --- 5. BOTÕES --- */
+
+/* Estilo base para os botões 'filtrar' e 'comprar'. */
+.btn-filtrar,
+.btn-comprar {
+    padding: 12px 25px;
+    /* Espaçamento interno. */
+    border: none;
+    /* Remove a borda padrão. */
+    border-radius: 8px;
+    /* Bordas arredondadas. */
+    font-family: 'Poppins', sans-serif;
+    /* Fonte do botão. */
+    font-weight: 600;
+    /* Peso da fonte (semi-negrito). */
+    font-size: 1rem;
+    /* Tamanho da fonte. */
+    color: white;
+    /* Cor do texto. */
+    cursor: pointer;
+    /* Muda o cursor para uma mãozinha. */
+    text-decoration: none;
+    /* Remove o sublinhado, caso seja um link. */
+    text-align: center;
+    /* Centraliza o texto. */
+    /* Define uma transição suave para as animações de hover. */
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-position 0.4s ease;
+    /* Cria um gradiente animado. O truque está no tamanho grande do fundo. */
+    background-image: linear-gradient(45deg, var(--cor-primaria), #d946ef, #9f5afd, #d946ef);
+    background-size: 300% 100%;
+}
+
+/* Estilo que se aplica ao passar o mouse sobre os botões. */
+.btn-filtrar:hover,
+.btn-comprar:hover {
+    transform: translateY(-3px);
+    /* Eleva o botão levemente. */
+    box-shadow: var(--sombra-brilho);
+    /* Adiciona o brilho roxo. */
+    background-position: 100% 0;
+    /* Move a posição do gradiente, criando o efeito de animação. */
+}
+
+/* --- 6. GRADE DE CARTAS E ESTILO DA CARTA --- */
+
+/* Estiliza o contêiner que agrupa todas as cartas. */
+.cartas {
+    display: grid;
+    /* Ativa o layout de grade (Grid). */
+    /* Cria colunas responsivas: o navegador tentará criar o máximo de colunas com no mínimo 250px. */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    /* Espaçamento entre as cartas. */
+    list-style: none;
+    /* Remove os marcadores de lista (bolinhas). */
+    padding: 0;
+    /* Remove o padding padrão da lista. */
+    justify-items: center;
+    /* Centraliza cada carta dentro da sua célula da grade. */
+}
+
+/* Estiliza cada carta individualmente. */
+.carta {
+    width: 100%;
+    /* A carta ocupa 100% da célula da grade. */
+    max-width: 280px;
+    /* Limita a largura máxima da carta. */
+    background: var(--cor-vidro);
+    /* Fundo de vidro. */
+    border: 1px solid var(--cor-borda-vidro);
+    /* Borda sutil. */
+    border-radius: 15px;
+    /* Bordas arredondadas. */
+    padding: 15px;
+    /* Espaçamento interno. */
+    text-align: center;
+    /* Centraliza todo o texto. */
+    backdrop-filter: blur(10px);
+    /* Efeito de desfoque. */
+    /* Transição suave para a animação de hover. */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Animação ao passar o mouse sobre a carta. */
+.carta:hover {
+    transform: translateY(-12px) scale(1.03);
+    /* Eleva e aumenta levemente o tamanho da carta. */
+    box-shadow: var(--sombra-brilho);
+    /* Adiciona o brilho roxo. */
+}
+
+/* Estiliza a imagem dentro da carta. */
+.carta img {
+    width: 100%;
+    /* Faz a imagem ocupar toda a largura da carta. */
+    border-radius: 10px;
+    /* Bordas arredondadas para a imagem. */
+    margin-bottom: 15px;
+    /* Espaçamento abaixo da imagem. */
+}
+
+/* Contêiner para as informações de texto da carta. */
+.informacoes {
+    display: flex;
+    /* Ativa o Flexbox. */
+    flex-direction: column;
+    /* Organiza os textos em coluna. */
+    gap: 8px;
+    /* Espaçamento entre os textos. */
+}
+
+/* Estiliza o nome do personagem na carta. */
+.nome-personagem {
+    font-family: 'Cinzel', serif;
+    /* Fonte especial de título. */
+    font-size: 1.5rem;
+    /* Tamanho da fonte. */
+    color: var(--cor-texto-principal);
+    /* Cor de texto principal. */
+}
+
+/* Estiliza o texto da categoria. */
+.categoria {
+    color: var(--cor-texto-secundario);
+    /* Cor de texto suave. */
+    font-size: 0.9rem;
+    /* Tamanho de fonte menor. */
+}
+
+/* Estiliza o preço da carta. */
+.preco {
+    font-size: 1.3rem;
+    /* Tamanho de fonte maior para destaque. */
+    font-weight: 600;
+    /* Fonte em semi-negrito. */
+    color: var(--cor-secundaria);
+    /* Cor dourada para o preço. */
+    margin: 5px 0;
+    /* Espaçamento vertical. */
+}
+
+/* Estilo adicional para o botão de comprar dentro da carta. */
+.btn-comprar {
+    margin-top: 10px;
+    /* Espaçamento acima do botão. */
+    display: block;
+    /* Transforma o botão em um elemento de bloco para ocupar a largura disponível. */
+}
